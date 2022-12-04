@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import db from './firebase';
 import { deleteDoc, doc, onSnapshot, collection } from 'firebase/firestore';
-import './snapshotFirebase.css';
+import './collections.css';
 
-function SnapshotFirebase() {
+export default function StudentsCollection() {
 
   const [student,setStudent]=useState([]);
-  const [teachers,setTeachers]=useState([]);
 
 // getStudent method is for getting the data from the database and set it to student by setStudent 
   function getStudents(y)
@@ -32,23 +31,6 @@ function SnapshotFirebase() {
     });
   }
 
-  function getTeachers(x)
-  {
-    const ref=collection(db, x);
-
-    onSnapshot(ref,(snpsht)=>{
-      const item=[];
-      snpsht.docs.forEach(doc => {
-        item.push(doc.data());
-      });
-      setTeachers(item);
-    });
-  }
-
-  // useEffect(() => {
-    
-  // }, [])
-
   function deleteData(stdent)
   {
     const docRef = doc(db, "Students", stdent.id);
@@ -58,25 +40,9 @@ function SnapshotFirebase() {
   });
   }
 
-  function teachersCollection(x){
-    getTeachers(x);
-  }
-
-  function studentsCollection(y){
-    getStudents(y);
-  }
-
   return (
     <div className="show_box">
-      <button type='submit' onClick={()=>teachersCollection("Teachers")}>Teachers</button>
-      <button type='submit' onClick={()=>studentsCollection("Students")}>Students</button>
-      
-        {teachers.map( tch =>(
-          <div className="main_div">
-          <h2>{tch.Name}</h2>
-          <h2>{tch.Age}</h2>
-          </div>
-        ))}
+      <button type='submit' onClick={()=>getStudents("Students")}>Students</button>
 
         {student.map( std =>(
           <div className="main_div" key={std.id}>
@@ -90,6 +56,4 @@ function SnapshotFirebase() {
     </div>
   );
 
-}
-
-export default SnapshotFirebase;
+};

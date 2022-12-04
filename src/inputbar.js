@@ -2,6 +2,7 @@ import React,{ useState } from 'react';
 import db from './firebase';
 import { setDoc, doc } from 'firebase/firestore';
 import './inputbar.css';
+import {Ntheme , Btheme} from './theme';
 
 function Inputbar() {
 
@@ -26,37 +27,6 @@ function Inputbar() {
         })
         .catch((err)=>{console.log(err)});
       }
-    
-    function Ntheme()
-      {
-          document.getElementById("inputBox").setAttribute("style",
-          "background-color: #1f1f1f;"
-          )
-          document.getElementById("Input1").setAttribute("style",
-          "background-color: #ffffb5; color: black;"
-          )
-          document.getElementById("Input2").setAttribute("style",
-          "background-color: #ffffb5; color: black;"
-          )
-          document.getElementById("Input3").setAttribute("style",
-          "background-color: #ffffb5; color: black;"
-          )
-      }
-    function Btheme()
-      {
-          document.getElementById("inputBox").setAttribute("style",
-          "background-color: #ffffb5;"
-          )
-          document.getElementById("Input1").setAttribute("style",
-          "background-color: black; color: white;"
-          )
-          document.getElementById("Input2").setAttribute("style",
-          "background-color: black; color: white;"
-          )
-          document.getElementById("Input3").setAttribute("style",
-          "background-color: black; color: white;"
-          )
-      }
 
     return (
           <div id="inputBox" className="input_box">
@@ -66,8 +36,8 @@ function Inputbar() {
           <input id="Input2" className="input1" placeholder="Roll No" type="number" onChange={(e)=>setRoll(e.target.value)} />
           <input id="Input3" className="input1" placeholder="CGPA" type="number" onChange={(e)=>setCGPA(e.target.value)}/>
           <button type="reset" onClick={()=> addData( {Name,id,CGPA} )} >Add New</button>
-          <button type='submit' onClick={()=>Ntheme()}>🌜</button>
-          <button type='submit' onClick={()=>Btheme()}>☀</button>
+          <button type='button' onClick={()=>Ntheme()}>🌜</button>
+          <button type='button' onClick={()=>Btheme()}>☀</button>
           </form>
           </div> 
     );

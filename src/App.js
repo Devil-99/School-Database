@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import Inputbar from './inputbar';
-import SnapshotFirebase from './snapshotFirebase.js';
+import Collections from './collections.js';
 
 function App() {
   return (
     
     <div className="app_box">
     <Inputbar/>
-    <SnapshotFirebase/>
+    <Collections/>
     </div>
 
   )
